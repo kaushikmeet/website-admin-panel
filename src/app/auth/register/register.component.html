@@ -1,0 +1,17 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <label>Username:</label>
+    <input formControlName="username" type="text">
+  
+    <label>Password:</label>
+    <input formControlName="password" type="password">
+  
+    <label>Email:</label>
+    <input formControlName="email" type="email">
+  
+    <label>Roles:</label>
+    <div *ngFor="let role of roles; let i = index">
+        <input type="checkbox" [value]="role" (change)="onRoleChange(role, $event)"> {{ role }}
+      </div>
+    <button type="submit">Create User</button>
+  </form>
+  
