@@ -17,7 +17,7 @@
             <tbody>
                 <tr *ngFor="let blog of blog_data; let i=index;">
                     <td>{{i+1}}</td>
-                    <td><img [src]='blog.image_url' alt="{{blog.title}}"/></td>
+                    <td><img [src]="image_get_url + blog.image_url" alt="{{blog.title}}" width="25" height="25" *ngIf="blog.image_url"/></td>
                     <td>{{blog.title}}</td>
                     <td>{{blog.slug}}</td>
                     <td><p>{{blog.description}}</p></td>

@@ -9,10 +9,8 @@ const path = require('path');
 const cors = require('cors');
 const app = express();
 app.use(express.json());
-app.use(cors({ 
-  origin: 'http://localhost:4200', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'] 
-}));
+app.use(cors({   origin: 'http://localhost:4200', methods: ['GET', 'POST', 'PUT', 'DELETE'] }));
+
 
 let db;
 function handleDisconnect(){
@@ -58,9 +56,9 @@ const storage = multer.diskStorage({
   }
 });
 const upload = multer({ storage: storage });
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.use('/uploads', express.static('uploads'));
-
+// user api
 app.get('/users', (req, res) => {
   const query = 'SELECT * FROM users';
   db.query(query, (err, results) => {
@@ -72,7 +70,6 @@ app.get('/users', (req, res) => {
       }
   });
 });
-
 
 app.get('/users/:id', (req, res) => {
   const userId = req.params.id;
