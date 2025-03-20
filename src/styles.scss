@@ -9,7 +9,7 @@ body {background: white; margin: 0;  font-family: poppins-medium, sans-serif; sc
 // :root{}
 button{background-color: transparent; border: none; outline: none;}
 button:disabled, button[disabled]{border: 1px solid #999999; background-color: #cccccc; color: #666666;}
-.content {margin-top: 55px; margin-left: 250px; padding: 20px; background-color: #f1f1f1; height: calc(100vh - 70px); overflow-y: auto;}
+.content {margin-top: 55px; margin-left: 220px; padding: 20px; background-color: #f1f1f1; height: 100%; overflow-y: auto;}
 #customers {font-family: poppins, sans-serif; border-collapse: collapse; width: 100%;}
 #customers td, #customers th {border: 1px solid #ddd; padding: 8px;}
 #customers tr:nth-child(even){background-color: #f2f2f2;}
@@ -22,4 +22,5 @@ button:disabled, button[disabled]{border: 1px solid #999999; background-color: #
 .btn-red{background-color: red; color: #fff;}
 .manage-row{display: flex; justify-content: space-between; align-items: center; margin: 20px;}
 .manage-row .mTitle{font-family: poppins-bold, sans-serif; font-size: 28px; line-height: 44px;}
-.manage-row .mButton > button{background-color: #04AA6D; color: #fff; padding: 15px 32px; border-radius: 39px; border: none; outline: none; cursor: pointer; font-size: 16px;}
+.manage-row .mButton > button{background-color: #04AA6D; color: #fff; padding: 15px 32px; border-radius: 39px; border: none; outline: none; cursor: pointer; font-size: 16px; display: flex; align-items: center; gap: 8px;}
+.manage-row .mButton > button span{font-size: 20px; font-weight: 600;}

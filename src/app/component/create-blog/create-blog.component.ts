@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AsideComponent } from "../aside/aside.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BlogService } from '../../services/blog.service';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from '../../services/user.service';
+import { environment } from '../../../environments/environment';
+// import { environment } from '../../src/environments/environment';
 
 @Component({
   selector: 'app-create-blog',
@@ -22,7 +23,8 @@ export class CreateBlogComponent implements OnInit{
   popup_header!: string;
   add_blog!: boolean;
   edit_blog!: boolean;
-   
+
+ image_get_url= environment.apiUrl;
 
  constructor(
   private blogSRV: BlogService, 
@@ -50,8 +52,8 @@ export class CreateBlogComponent implements OnInit{
 }
 
  getAllBlog(){
-  this.blogSRV.getBlogs().subscribe((blogs: any[])=>{
-    this.blog_data = blogs;
+  this.blogSRV.getBlogs().subscribe((res)=>{
+    this.blog_data = res;
     console.log(this.blog_data);
   }, error=>{
     console.error('Error featching blog', error)
@@ -75,8 +77,10 @@ export class CreateBlogComponent implements OnInit{
   this.blogSRV.createBlog(formData).subscribe(() => {
       this.blogForm.reset();
       this.getAllBlog(); 
+      this.toster.success('Blog added successfully');
     }, (error) => {
       console.error('Error creating blog', error);
+      this.toster.error('Error creating blog');
     });
 }
 
