@@ -1,0 +1,32 @@
+<div class="layout">
+    <!-- Fixed Header -->
+    <header class="header">
+      <h1>Admin Panel</h1>
+      <nav class="header-nav">
+        <p><strong>Username:</strong> {{userData.username}}</p>
+        <p><strong>Role:</strong> {{userData.name }}</p>
+      </nav>
+    </header>
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <li><a routerLink="/dashboard">Dashboard</a></li>
+          <li><a routerLink="/create-blog">Create Blog</a></li>
+          <li><a routerLink="/create-news">Create News</a></li>
+          <li><a routerLink="/create-casestudy">Create Casestudy</a></li>
+          <li><a routerLink="/create-service">Create Service</a></li>
+          <li><a routerLink="/create-project">Create Project</a></li>
+          <li><a routerLink="/create-slider">Create Slider</a></li>
+          <li><a routerLink="/profile">Profile</a></li>
+          <li *ngIf="isAdmin"><a routerLink="/settings">Settings</a></li>
+          <li><a routerLink="/logout" (click)="logout()">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+  
+    <!-- Main Content -->
+    <main>
+      <router-outlet></router-outlet> 
+    </main>
+  </div>
+  

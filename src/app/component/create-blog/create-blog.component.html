@@ -1,0 +1,70 @@
+<app-aside></app-aside>
+<div class="content">
+    <div class="manage-row">
+        <div class="mTitle">Manage Blog</div>
+        <div class="mButton"><button (click)="addBlogPopup()" data-bs-toggle="modal" data-bs-target="#createBlog"><span>+</span> Create blog</button></div>
+    </div>
+    <div *ngIf="blog_data.length > 0">
+        <table id="customers">
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Slug</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+            <tbody>
+                <tr *ngFor="let blog of blog_data; let i=index;">
+                    <td>{{i+1}}</td>
+                    <td><img [src]='blog.image_url' alt="{{blog.title}}"/></td>
+                    <td>{{blog.title}}</td>
+                    <td>{{blog.slug}}</td>
+                    <td><p>{{blog.description}}</p></td>
+                    <td class="td-row">
+                        <button class="btn-green" (click)="editBlog(blog.id)" data-bs-toggle="modal" data-bs-target="#createBlog">Edit</button>
+                        <button class="btn-red" (click)="deleteBlog(blog.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- model -->
+<div class="modal fade" id="createBlog" tabindex="-1" aria-labelledby="createBlogLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="createBlogLabel">{{popup_header}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="blogForm">
+                <div class="form-group mb-2">
+                    <input type="text" class="form-control" placeholder="Title" formControlName="title">
+                    <div *ngIf="blogForm.controls['title'].invalid && blogForm.controls['title'].touched">
+                        <small class="text-danger">Title is required</small>
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <input type="file" id="image_url" (change)="onFileSelected($event)" accept="image/*" class="form-control">
+                    <input *ngIf="selectedFileName" type="hidden" value="{{selectedFileName}}"/>
+                </div>
+                <div class="form-group mb-2">
+                    <textarea class="form-control" rows="8" cols="10" placeholder="Description" formControlName="description"></textarea>
+                    <div *ngIf="blogForm.controls['description'].invalid && blogForm.controls['description'].touched">
+                        <small class="text-danger">Description is required</small>
+                      </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="addNewBlog()" *ngIf="add_blog" [disabled]="blogForm.invalid">Create Blog</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="udpateBlog()" *ngIf="edit_blog" [disabled]="blogForm.invalid">Update Blog</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-- model -->
