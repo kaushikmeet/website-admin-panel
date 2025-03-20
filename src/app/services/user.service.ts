@@ -18,12 +18,22 @@ export class UserService {
     })
   }  
 
+  httpOptionsAuthG = {
+    headers: new HttpHeaders({ 
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+localStorage.getItem('token')})
+  };
+
   private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService) {}
 
+  getUser(user_id: number): Observable<any>{
+     return this.http.get(`${this.apiUrl}/users/${user_id}`, this.httpOptions);
+  }
+
   login(username: string, password: string) {
-    return this.http.post(`${this.apiUrl}/login`, { username, password }, this.httpOptions);
+    return this.http.post(`${this.apiUrl}/login`, { username, password }, this.httpOptionsAuthG);
   }
 
   logout() {
