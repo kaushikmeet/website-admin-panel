@@ -14,6 +14,7 @@ import { CreateSliderComponent } from './component/create-slider/create-slider.c
 import { CreateProjectComponent } from './component/create-project/create-project.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { SettingComponent } from './component/setting/setting.component';
+import { ManageUserComponent } from './component/manage-user/manage-user.component';
 
 export const routes: Routes = [
    {path:'home', component: HomeComponent},
@@ -28,6 +29,7 @@ export const routes: Routes = [
    {path:'dashboard', canActivate:[roleGurdGuard], component: LoginComponent},
    {path:'admin-dashboard', component: AdminDashboardComponent},
    {path:'user-dashboard', component: UserDashboardComponent},
+   {path:'manage-user', component: ManageUserComponent},
    {path:'profile', component:ProfileComponent},
    {path:'setting', component:SettingComponent},
    {path:'register', component: RegisterComponent},

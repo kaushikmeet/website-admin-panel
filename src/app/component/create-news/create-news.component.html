@@ -1,1 +1,76 @@
-<p>create-news works!</p>
+<app-aside></app-aside>
+<div class="content">
+    <div class="manage-row">
+        <div class="mTitle">Manage News</div>
+        <div class="mButton"><button (click)="addNewsPopup()" data-bs-toggle="modal" data-bs-target="#createNews"><span>+</span> Create News</button></div>
+    </div>
+    <div class="serach-box">
+        <input type="search" class="form-control" placeholder="Search...."/>
+        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+    </div>
+    <div class="table-data" *ngIf="news_data.length > 0">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Image</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+                <tr *ngFor="let news of news_data; let i=index;">
+                    <td scope="row">{{i+1}}</td>
+                    <td><img [src]="image_get_url + news.image_url" alt="{{news.title}}" width="25" height="25" *ngIf="news.image_url"/></td>
+                    <td><p>{{news.title}}</p></td>
+                    <td><p>{{news.slug}}</p></td>
+                    <td><p>{{news.description}}</p></td>
+                    <td class="td-row">
+                        <button class="btn-green" (click)="editNews(news.id)" data-bs-toggle="modal" data-bs-target="#createNews"><i class="fa-solid fa-pencil"></i></button>
+                        <button class="btn-red" (click)="deleteNews(news.id)"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- modal -->
+<div class="modal fade" id="createNews" tabindex="-1" aria-labelledby="createNewsLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="createNewsLabel">{{popup_header}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="newsForm">
+                <div class="form-group mb-2">
+                    <input type="text" class="form-control" placeholder="Title" formControlName="title">
+                    <div *ngIf="newsForm.controls['title'].invalid && newsForm.controls['title'].touched">
+                        <small class="text-danger">Title is required</small>
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <input type="file" id="image_url" (change)="onFileSelected($event)" accept="image/*" class="form-control">
+                    <input *ngIf="selectedFileName" type="hidden" value="{{selectedFileName}}"/>
+                </div>
+                <div class="form-group mb-2">
+                    <textarea class="form-control" rows="8" cols="10" placeholder="Description" formControlName="description"></textarea>
+                    <div *ngIf="newsForm.controls['description'].invalid && newsForm.controls['description'].touched">
+                        <small class="text-danger">Description is required</small>
+                      </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="addNews()" *ngIf="add_news" [disabled]="newsForm.invalid">Create News</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="udpateNews()" *ngIf="edit_news" [disabled]="newsForm.invalid">Update News</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-- end-modal -->
