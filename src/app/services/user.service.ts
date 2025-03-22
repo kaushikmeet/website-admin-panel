@@ -29,11 +29,15 @@ export class UserService {
   constructor(private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService) {}
 
   getUser(user_id: number): Observable<any>{
-     return this.http.get(`${this.apiUrl}/users/${user_id}`, this.httpOptions);
+     return this.http.get(`${this.apiUrl}/api/users/${user_id}`, this.httpOptions);
   }
 
+  getAllUser(): Observable<any>{
+    return this.http.get(`${this.apiUrl}/api/users`, this.httpOptions);
+  }
+  
   login(username: string, password: string) {
-    return this.http.post(`${this.apiUrl}/login`, { username, password }, this.httpOptionsAuthG);
+    return this.http.post(`${this.apiUrl}/api/login`, { username, password }, this.httpOptionsAuthG);
   }
 
   logout() {
@@ -56,6 +60,17 @@ export class UserService {
   }
 
   register(userData: { username: string; password: string; roleId: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, userData);
+    return this.http.post(`${this.apiUrl}/api/register`, userData);
+  }
+
+  singleUser(user_id: any): Observable<any>{
+    return this.http.get(`${this.apiUrl}/api/users/${user_id}`)
+  }
+
+  updateUser(user_id: any, userData: { username: string, roleName: string }): Observable<any>{
+    return this.http.put(`${this.apiUrl}/api/users/${user_id}`, userData);
+  }
+  deleteUser(user_id: any): Observable<any>{
+    return this.http.delete(`${this.apiUrl}/api/users/${user_id}`)
   }
 }

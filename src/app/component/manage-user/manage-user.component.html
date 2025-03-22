@@ -1,0 +1,57 @@
+<app-aside></app-aside>
+<div class="content">
+ <div class="manage-row">
+    <h2 class="mTitle">Manage User</h2>
+</div>
+<div class="serach-box"><input type="search" placeholder="Search...." class="form-control"><span><i class="fa-solid fa-magnifying-glass"></i></span></div>
+<div class="table-data">
+    <table class="table">
+         <thead>
+            <tr>
+                <th>#</th>
+                <th>username</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let user of all_users; let i = index;">
+                <td>{{i+1}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.name}}</td>
+                <td class="td-row">
+                    <button class="btn-green" data-bs-toggle="modal" data-bs-target="#createUser" (click)="editUser(user.id)"><i class="fa-solid fa-pencil"></i></button>
+                    <button class="btn-red" (click)="deleteUser(user.id)"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            </tr>
+         </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- modal -->
+ <div class="modal fade" id="createUser" arira-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="createBlogLabel">Update User</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form [formGroup]="updateUserForm">
+                  <div class="form-group mb-2">
+                      <input type="text" class="form-control" formControlName="username">
+                  </div>
+                  <div class="form-group mb-2">
+                      <input class="form-control" formControlName="roleName"/>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateUser()" [disabled]="updateUserForm.invalid">Update Blog</button>
+          </div>
+        </div>
+      </div> 
+ </div>
+ <!-- end-modal -->

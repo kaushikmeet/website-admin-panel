@@ -1,2 +1,44 @@
 <app-aside></app-aside>
-<p>admin-dashboard works!</p>
+<div class="content">
+  <div class="count-data">
+    <div><h2>Dashboard</h2></div>
+    <div>
+      <p>{{ currentDateTime }}</p>
+    </div>
+  </div>
+  <div class="count-row">
+    <a class="count-col" routerLink="/manage-user">
+      <div class="count-data-design">
+        <div class="count-inner">
+          <div class="cout-inner-text">
+            <p class="count-title">Users</p>
+            <p class="count-text">{{ totalUsers }}</p>
+          </div>
+          <i class="fa-solid fa-users blue-gradient"></i>
+        </div>
+      </div>
+    </a>
+    <a class="count-col" routerLink="/create-news">
+      <div class="count-data-design">
+        <div class="count-inner">
+          <div class="cout-inner-text">
+            <p class="count-title">News</p>
+            <p class="count-text">{{ totalNews }}</p>
+          </div>
+          <i class="fa-solid fa-newspaper"></i>
+        </div>
+      </div>
+    </a>
+    <a class="count-col" routerLink="/create-blog">
+      <div class="count-data-design">
+        <div class="count-inner">
+          <div class="cout-inner-text">
+            <p class="count-title">Blogs</p>
+            <p class="count-text">{{ totalBlogs }}</p>
+          </div>
+          <i class="fa-solid fa-blog"></i>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

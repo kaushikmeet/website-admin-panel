@@ -4,26 +4,32 @@
         <div class="mTitle">Manage Blog</div>
         <div class="mButton"><button (click)="addBlogPopup()" data-bs-toggle="modal" data-bs-target="#createBlog"><span>+</span> Create blog</button></div>
     </div>
-    <div *ngIf="blog_data.length > 0">
-        <table id="customers">
+    <div class="serach-box">
+        <input type="search" class="form-control" placeholder="Search...."/>
+        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+    </div>
+    <div class="table-data" *ngIf="blog_data.length > 0">
+        <table class="table">
+            <thead>
             <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Image</th>
-                <th>Slug</th>
-                <th>Description</th>
-                <th>Action</th>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Image</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
             </tr>
+        </thead>
             <tbody>
                 <tr *ngFor="let blog of blog_data; let i=index;">
-                    <td>{{i+1}}</td>
+                    <td scope="row">{{i+1}}</td>
                     <td><img [src]="image_get_url + blog.image_url" alt="{{blog.title}}" width="25" height="25" *ngIf="blog.image_url"/></td>
-                    <td>{{blog.title}}</td>
-                    <td>{{blog.slug}}</td>
+                    <td><p>{{blog.title}}</p></td>
+                    <td><p>{{blog.slug}}</p></td>
                     <td><p>{{blog.description}}</p></td>
                     <td class="td-row">
-                        <button class="btn-green" (click)="editBlog(blog.id)" data-bs-toggle="modal" data-bs-target="#createBlog">Edit</button>
-                        <button class="btn-red" (click)="deleteBlog(blog.id)">Delete</button>
+                        <button class="btn-green" (click)="editBlog(blog.id)" data-bs-toggle="modal" data-bs-target="#createBlog"><i class="fa-solid fa-pencil"></i></button>
+                        <button class="btn-red" (click)="deleteBlog(blog.id)"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
@@ -32,7 +38,7 @@
 </div>
 
 <!-- model -->
-<div class="modal fade" id="createBlog" tabindex="-1" aria-labelledby="createBlogLabel">
+<div class="modal fade" id="createBlog" tabindex="-1" aria-labelledby="createBlogLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
