@@ -19,14 +19,6 @@ function handleDisconnect() {
     }
   });
 
-  db.on('error', (err) => {
-    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-      console.error('Connection to MySQL lost. Reconnecting...');
-      handleDisconnect();
-    } else {
-      throw err;
-    }
-  });
 }
 
 handleDisconnect();

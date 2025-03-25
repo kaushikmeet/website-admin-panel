@@ -5,10 +5,11 @@ import { environment } from '../../../environments/environment';
 import { AsideComponent } from '../aside/aside.component';
 import { NewsService } from '../../services/news.service';
 import { ToastrService } from 'ngx-toastr';
+import { Editor, NgxEditorModule } from 'ngx-editor';
 
 @Component({
   selector: 'app-create-news',
-  imports: [CommonModule, ReactiveFormsModule, AsideComponent],
+  imports: [CommonModule, ReactiveFormsModule, AsideComponent, NgxEditorModule],
   templateUrl: './create-news.component.html',
   styleUrl: './create-news.component.scss'
 })
@@ -24,6 +25,7 @@ export class CreateNewsComponent implements OnInit{
   selectedNewsId!: number; 
 
   image_get_url= environment.apiUrl;
+  editor!: Editor;
 
   constructor(
     private fb: FormBuilder, 
@@ -32,6 +34,7 @@ export class CreateNewsComponent implements OnInit{
 
   ngOnInit(): void {
     this.getAllNews();
+    this.editor = new Editor();
     
       this.newsForm = this.fb.group({
         title: ['', Validators.required],
@@ -42,7 +45,6 @@ export class CreateNewsComponent implements OnInit{
   getAllNews(){
     this.newsSRV.getNews().subscribe((res)=>{
       this.news_data = res;
-      console.log(this.news_data);
     }, error=>{
       console.error('Error featching blog', error)
     });
