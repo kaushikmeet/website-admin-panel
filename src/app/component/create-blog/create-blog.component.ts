@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AsideComponent } from '../aside/aside.component';
 import {
   FormBuilder,
@@ -10,15 +10,15 @@ import { CommonModule } from '@angular/common';
 import { BlogService } from '../../services/blog.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../environments/environment';
-// import { environment } from '../../src/environments/environment';
+import { Editor, NgxEditorModule } from 'ngx-editor';
 
 @Component({
   selector: 'app-create-blog',
-  imports: [CommonModule, AsideComponent, ReactiveFormsModule],
+  imports: [CommonModule, AsideComponent, ReactiveFormsModule, NgxEditorModule],
   templateUrl: './create-blog.component.html',
   styleUrl: './create-blog.component.scss',
 })
-export class CreateBlogComponent implements OnInit {
+export class CreateBlogComponent implements OnInit, OnDestroy {
   blogForm!: FormGroup;
   blog_data: any[] = [];
   selectedFileName: string = '';
@@ -28,8 +28,10 @@ export class CreateBlogComponent implements OnInit {
   popup_header!: string;
   add_blog!: boolean;
   edit_blog!: boolean;
+  editorContent: string = ''; 
 
   image_get_url = environment.apiUrl;
+  editor!: Editor;
 
   constructor(
     private blogSRV: BlogService,
@@ -39,6 +41,7 @@ export class CreateBlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllBlog();
+    this.editor = new Editor();
 
     this.blogForm = this.fb.group({
       title: ['', Validators.required],
@@ -61,7 +64,6 @@ export class CreateBlogComponent implements OnInit {
     this.blogSRV.getBlogs().subscribe(
       (res) => {
         this.blog_data = res;
-        console.log(this.blog_data);
       },
       (error) => {
         console.error('Error featching blog', error);
@@ -108,7 +110,7 @@ export class CreateBlogComponent implements OnInit {
       this.single_blog_data = res;
       this.blogForm.patchValue({
         title: this.single_blog_data.title,
-        description: this.single_blog_data.description,
+        description: this.single_blog_data.description
       });
     });
   }
@@ -152,4 +154,9 @@ export class CreateBlogComponent implements OnInit {
       this.toster.show('blog is not deleted');
     }
   }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
 }

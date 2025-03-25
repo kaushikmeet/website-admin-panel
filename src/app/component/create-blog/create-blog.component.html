@@ -16,7 +16,6 @@
                 <th scope="col">Title</th>
                 <th scope="col">Image</th>
                 <th scope="col">Slug</th>
-                <th scope="col">Description</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -26,7 +25,6 @@
                     <td><img [src]="image_get_url + blog.image_url" alt="{{blog.title}}" width="25" height="25" *ngIf="blog.image_url"/></td>
                     <td><p>{{blog.title}}</p></td>
                     <td><p>{{blog.slug}}</p></td>
-                    <td><p>{{blog.description}}</p></td>
                     <td class="td-row">
                         <button class="btn-green" (click)="editBlog(blog.id)" data-bs-toggle="modal" data-bs-target="#createBlog"><i class="fa-solid fa-pencil"></i></button>
                         <button class="btn-red" (click)="deleteBlog(blog.id)"><i class="fa-solid fa-trash"></i></button>
@@ -39,7 +37,7 @@
 
 <!-- model -->
 <div class="modal fade" id="createBlog" tabindex="-1" aria-labelledby="createBlogLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="createBlogLabel">{{popup_header}}</h1>
@@ -49,19 +47,16 @@
             <form [formGroup]="blogForm">
                 <div class="form-group mb-2">
                     <input type="text" class="form-control" placeholder="Title" formControlName="title">
-                    <div *ngIf="blogForm.controls['title'].invalid && blogForm.controls['title'].touched">
-                        <small class="text-danger">Title is required</small>
-                    </div>
                 </div>
                 <div class="form-group mb-2">
                     <input type="file" id="image_url" (change)="onFileSelected($event)" accept="image/*" class="form-control">
                     <input *ngIf="selectedFileName" type="hidden" value="{{selectedFileName}}"/>
                 </div>
-                <div class="form-group mb-2">
-                    <textarea class="form-control" rows="8" cols="10" placeholder="Description" formControlName="description"></textarea>
-                    <div *ngIf="blogForm.controls['description'].invalid && blogForm.controls['description'].touched">
-                        <small class="text-danger">Description is required</small>
-                      </div>
+                <div class="form-group mb-2 mt-3">
+                    <div class="editor-wrapper">
+                        <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                        <ngx-editor [editor]="editor" [(ngModel)]="editorContent" [placeholder]="'Type here...'" formControlName="description"></ngx-editor>
+                    </div>
                 </div>
             </form>
         </div>

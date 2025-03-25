@@ -15,7 +15,7 @@ button:disabled, button[disabled]{border: 1px solid #999999; background-color: #
 .serach-box span{font-size: 14px; position: absolute; right: 11px; bottom: 11px;}
 .table-data .table th {text-align: left; background-color: #3f51b5; color: #fff; font-weight: 400;}
 .table-data .table .td-row{display: flex; gap: 10px;}
-.table-data .table td p{margin: 0; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;}
+.table-data .table td p{margin: 0; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; max-width: 450px;}
 .table-data .table td button{border: none; outline: none; padding: 4px 8px; cursor: pointer; font-family: poppins, sans-serif;}
 .btn-green{background-color: transparent; color: #294fbe;}
 .btn-red{background-color: transparent; color: #fa2c2c;}
@@ -34,3 +34,5 @@ button:disabled, button[disabled]{border: 1px solid #999999; background-color: #
 .count-row .count-data-design .count-inner .count-title{font-weight: 600; letter-spacing: 0.9px; color: #4a4848;}
 .count-row .count-data-design .count-inner .cout-inner-text{display: flex; flex-direction: column;}
 .count-row .count-data-design .count-inner .cout-inner-text .count-text{font-size: 24px; font-weight: 600; color: #4a4848;}
+.editor-wrapper{border: 1px solid #ccc; border-radius: 6px; overflow: hidden;}
+.editor-wrapper .NgxEditor{height: 350px; overflow-y: auto;}
