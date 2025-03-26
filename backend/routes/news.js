@@ -78,13 +78,13 @@ router.put('/news/:id', upload.single('image'), (req, res) => {
   const slug = slugify(title, { lower: true, strict: true });
   let imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
   const plainTextDescription = htmlToText(description);
-  
-  let query = `UPDATE news SET title = ?, description = ?, plain_text_description = ?,  slug = ? WHERE id = ?`;
+
+  let query = `UPDATE news SET title = ?, description = ?, plain_text_description = ?, slug = ? WHERE id = ?`;
   let params = [title, description, plainTextDescription, slug, id];
 
   if (imageUrl) {
     query = `UPDATE news SET title = ?, description = ?, plain_text_description = ?, image_url = ?, slug = ? WHERE id = ?`;
-    params = [title, description, imageUrl, plainTextDescription, slug, id];
+    params = [title, description, plainTextDescription, imageUrl, slug, id];  // Correct parameter order
   }
 
   db.execute(query, params, (err, results) => {
@@ -93,11 +93,12 @@ router.put('/news/:id', upload.single('image'), (req, res) => {
       return res.status(500).json({ error: 'Database error' });
     }
     if (results.affectedRows === 0) {
-      return res.status(404).json({ error: 'news post not found' });
+      return res.status(404).json({ error: 'News post not found' });
     }
-    res.status(200).json({ message: 'news updated successfully' });
+    res.status(200).json({ message: 'News updated successfully' });
   });
 });
+
 
 // Delete a news
 router.delete('/news/:id', (req, res) => {

@@ -36,3 +36,8 @@ button:disabled, button[disabled]{border: 1px solid #999999; background-color: #
 .count-row .count-data-design .count-inner .cout-inner-text .count-text{font-size: 24px; font-weight: 600; color: #4a4848;}
 .editor-wrapper{border: 1px solid #ccc; border-radius: 6px; overflow: hidden;}
 .editor-wrapper .NgxEditor{height: 350px; overflow-y: auto;}
+.single-article{position: relative;    overflow: hidden; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column;
+flex-direction: column; min-width: 0; word-wrap: break-word; background-color: #fff; background-clip: border-box; border: 1px solid #f1f1f1; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;}
+.single-article a{text-decoration: none; display: block;}
+.article-img:before{content: ""; display: block; background: rgba(0, 0, 0, .25); -webkit-transition: all .3s ease-in; transition: all .3s ease-in; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;}
+.article-img img{width: 100%; height: 14rem; object-fit: cover; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out; -webkit-transform: rotate(0) scale(1); transform: rotate(0) scale(1);}

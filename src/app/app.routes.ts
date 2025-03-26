@@ -15,10 +15,20 @@ import { CreateProjectComponent } from './component/create-project/create-projec
 import { ProfileComponent } from './component/profile/profile.component';
 import { SettingComponent } from './component/setting/setting.component';
 import { ManageUserComponent } from './component/manage-user/manage-user.component';
+import { BlogComponent } from './component/blog/blog.component';
+import { CaseStudyComponent } from './component/case-study/case-study.component';
+import { NewsComponent } from './component/news/news.component';
+import { CompanyComponent } from './component/company/company.component';
+import { ProjectComponent } from './component/project/project.component';
 
 export const routes: Routes = [
    {path:'home', component: HomeComponent},
    {path:'', redirectTo:'/home', pathMatch:'full'},
+   {path:'blog', component: BlogComponent},
+   {path:'case-study', component:CaseStudyComponent},
+   {path:'news', component:NewsComponent},
+   {path:'company', component: CompanyComponent},
+   {path:'project', component:ProjectComponent},
    {path:'create-blog', component:CreateBlogComponent},
    {path:'create-news', component:CreateNewsComponent},
    {path:'create-casestudy', component:CreateCasestudyComponent},
