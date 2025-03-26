@@ -1,1 +1,70 @@
-<p>create-casestudy works!</p>
+<app-aside></app-aside>
+<div class="content">
+    <div class="manage-row">
+        <div class="mTitle">Manage Case Study</div>
+        <div class="mButton"><button (click)="addCaseStudyPopup()" data-bs-toggle="modal" data-bs-target="#createCaseStudy"><span>+</span> Create News</button></div>
+    </div>
+    <div class="serach-box">
+        <input type="search" class="form-control" placeholder="Search...."/>
+        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+    </div>
+    <div class="table-data" *ngIf="case_study_data.length > 0">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Image</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+                <tr *ngFor="let caseStudy of case_study_data; let i=index;">
+                    <td scope="row">{{i+1}}</td>
+                    <td><img [src]="image_get_url + caseStudy.image_url" alt="{{caseStudy.title}}" width="25" height="25" *ngIf="caseStudy.image_url"/></td>
+                    <td><p>{{caseStudy.title}}</p></td>
+                    <td><p>{{caseStudy.slug}}</p></td>
+                    <td class="td-row">
+                        <button class="btn-green" (click)="editCaseStudy(caseStudy.id)" data-bs-toggle="modal" data-bs-target="#createCaseStudy"><i class="fa-solid fa-pencil"></i></button>
+                        <button class="btn-red" (click)="deleteCaseStudy(caseStudy.id)"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- modal -->
+<div class="modal fade" id="createCaseStudy" tabindex="-1" aria-labelledby="createCaseStudyLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="createCaseStudyLabel">{{popup_header}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="caseStudyForm">
+                <div class="form-group mb-2">
+                    <input type="text" class="form-control" placeholder="Title" formControlName="title">
+                </div>
+                <div class="form-group mb-2">
+                    <input type="file" id="image_url" (change)="onFileSelected($event)" accept="image/*" class="form-control">
+                    <input *ngIf="selectedFileName" type="hidden" value="{{selectedFileName}}"/>
+                </div>
+                <div class="form-group mb-2">
+                    <div class="editor-wrapper">
+                        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+                        <ngx-editor [editor]="editor" [(ngModel)]="editorContent" [placeholder]="'Type here...'" formControlName="description"></ngx-editor>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="addCaseStudy()" *ngIf="add_case_study" [disabled]="caseStudyForm.invalid">Create Case Study</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="udpateCaseStudy()" *ngIf="edit_case_study" [disabled]="caseStudyForm.invalid">Update Case Study</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-- end-modal -->

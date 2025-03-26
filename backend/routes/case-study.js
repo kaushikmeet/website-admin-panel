@@ -5,6 +5,7 @@ const db = require('../db');
 const router = express.Router();
 const path = require('path');
 const fs = require('fs');
+const { htmlToText } = require('html-to-text');
 
 // Multer Storage Config
 const storage = multer.diskStorage({
@@ -58,9 +59,10 @@ router.post('/case-study', upload.single('image'), (req, res) => {
   const { title, description } = req.body;
   const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
   const slug = slugify(title, { lower: true, strict: true });
+  const plainTextDescription = htmlToText(description);
 
-  const query = `INSERT INTO casestudy (title, description, image_url, slug) VALUES (?, ?, ?, ?)`;
-  db.execute(query, [title, description, imageUrl, slug], (err, results) => {
+  const query = `INSERT INTO casestudy (title, description, plain_text_description, image_url, slug) VALUES (?, ?, ?, ?, ?)`;
+  db.execute(query, [title, description, plainTextDescription, imageUrl, slug], (err, results) => {
     if (err) {
       console.error('Error inserting blog:', err);
       return res.status(500).json({ error: 'Database error' });
@@ -75,13 +77,14 @@ router.put('/case-study/:id', upload.single('image'), (req, res) => {
   const { title, description } = req.body;
   const slug = slugify(title, { lower: true, strict: true });
   let imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+  const plainTextDescription = htmlToText(description);
 
-  let query = `UPDATE casestudy SET title = ?, description = ?, slug = ? WHERE id = ?`;
-  let params = [title, description, slug, id];
+  let query = `UPDATE casestudy SET title = ?, description = ?, plain_text_description = ?, slug = ? WHERE id = ?`;
+  let params = [title, description, plainTextDescription, slug, id];
 
   if (imageUrl) {
-    query = `UPDATE casestudy SET title = ?, description = ?, image_url = ?, slug = ? WHERE id = ?`;
-    params = [title, description, imageUrl, slug, id];
+    query = `UPDATE casestudy SET title = ?, description = ?, plain_text_description = ?, image_url = ?, slug = ? WHERE id = ?`;
+    params = [title, description, plainTextDescription, imageUrl,  slug, id];
   }
 
   db.execute(query, params, (err, results) => {
