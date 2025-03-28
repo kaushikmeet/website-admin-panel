@@ -3,6 +3,7 @@ import { AsideComponent } from '../aside/aside.component';
 import {
   FormBuilder,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -11,10 +12,11 @@ import { BlogService } from '../../services/blog.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../environments/environment';
 import { Editor, NgxEditorModule, Toolbar } from 'ngx-editor';
+import { SearchPipe } from '../../pipes/search.pipe';
 
 @Component({
   selector: 'app-create-blog',
-  imports: [CommonModule, AsideComponent, ReactiveFormsModule, NgxEditorModule],
+  imports: [CommonModule, AsideComponent, ReactiveFormsModule, NgxEditorModule, FormsModule, SearchPipe],
   templateUrl: './create-blog.component.html',
   styleUrl: './create-blog.component.scss',
 })
@@ -29,7 +31,7 @@ export class CreateBlogComponent implements OnInit, OnDestroy {
   add_blog!: boolean;
   edit_blog!: boolean;
   editorContent: string = ''; 
-
+  searchTerm: string = ''; 
   image_get_url = environment.apiUrl;
   editor!: Editor;
   toolbar: Toolbar = [

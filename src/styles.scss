@@ -12,7 +12,7 @@ button:disabled, button[disabled]{border: 1px solid #999999; background-color: #
 .content {margin-top: 55px; margin-left: 220px; padding: 20px; height: 100%;}
 .table-data{padding: 0 20px;}
 .serach-box{float: right; width: calc(30% - 50px); margin: 20px 20px; position: relative;}
-.serach-box span{font-size: 14px; position: absolute; right: 11px; bottom: 11px;}
+.serach-box span{font-size: 18px; position: absolute; right: 11px; bottom: 4px;}
 .table-data .table th {text-align: left; background-color: #3f51b5; color: #fff; font-weight: 400;}
 .table-data .table .td-row{display: flex; gap: 10px;}
 .table-data .table td p{margin: 0; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; max-width: 450px;}

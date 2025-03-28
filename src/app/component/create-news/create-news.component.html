@@ -5,7 +5,7 @@
         <div class="mButton"><button (click)="addNewsPopup()" data-bs-toggle="modal" data-bs-target="#createNews"><span>+</span> Create News</button></div>
     </div>
     <div class="serach-box">
-        <input type="search" class="form-control" placeholder="Search...."/>
+        <input type="search" class="form-control" [(ngModel)]="searchTerm" placeholder="Search...."/>
         <span><i class="fa-solid fa-magnifying-glass"></i></span>
     </div>
     <div class="table-data" *ngIf="news_data.length > 0">
@@ -13,14 +13,14 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Title</th>
                 <th scope="col">Image</th>
+                <th scope="col">Title</th>
                 <th scope="col">Slug</th>
                 <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
-                <tr *ngFor="let news of news_data; let i=index;">
+                <tr *ngFor="let news of news_data | search: searchTerm; let i=index;">
                     <td scope="row">{{i+1}}</td>
                     <td><img [src]="image_get_url + news.image_url" alt="{{news.title}}" width="25" height="25" *ngIf="news.image_url"/></td>
                     <td><p>{{news.title}}</p></td>
@@ -45,16 +45,16 @@
         </div>
         <div class="modal-body">
             <form [formGroup]="newsForm">
-                <div class="form-group mb-2">
+                <div class="form-group mb-3">
                     <input type="text" class="form-control" placeholder="Title" formControlName="title">
                 </div>
-                <div class="form-group mb-2">
+                <div class="form-group mb-3">
                     <input type="file" id="image_url" (change)="onFileSelected($event)" accept="image/*" class="form-control">
                     <input *ngIf="selectedFileName" type="hidden" value="{{selectedFileName}}"/>
                 </div>
-                <div class="form-group mb-2">
+                <div class="form-group mb-3">
                     <div class="editor-wrapper">
-                        <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
                         <ngx-editor [editor]="editor"  [placeholder]="'Type here...'" formControlName="description"></ngx-editor>
                     </div>
                     <!-- <textarea class="form-control" rows="8" cols="10" placeholder="Description" formControlName="description"></textarea> -->
