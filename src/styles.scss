@@ -36,8 +36,32 @@ button:disabled, button[disabled]{border: 1px solid #999999; background-color: #
 .count-row .count-data-design .count-inner .cout-inner-text .count-text{font-size: 24px; font-weight: 600; color: #4a4848;}
 .editor-wrapper{border: 1px solid #ccc; border-radius: 6px; overflow: hidden;}
 .editor-wrapper .NgxEditor{height: 350px; overflow-y: auto;}
-.single-article{position: relative;    overflow: hidden; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column;
-flex-direction: column; min-width: 0; word-wrap: break-word; background-color: #fff; background-clip: border-box; border: 1px solid #f1f1f1; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;}
+.single-article{border-radius:16px; position: relative; overflow: hidden; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; min-width: 0; word-wrap: break-word; background-color: #fff; background-clip: border-box; border: 1px solid #f1f1f1; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out;}
 .single-article a{text-decoration: none; display: block;}
-.article-img:before{content: ""; display: block; background: rgba(0, 0, 0, .25); -webkit-transition: all .3s ease-in; transition: all .3s ease-in; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;}
-.article-img img{width: 100%; height: 14rem; object-fit: cover; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out; -webkit-transform: rotate(0) scale(1); transform: rotate(0) scale(1);}
+.article-img img{width: 100%; height: 250px; object-fit: cover; -webkit-transition: all .3s ease-in-out; transition: all .3s ease-in-out; -webkit-transform: rotate(0) scale(1); transform: rotate(0) scale(1);}
+.article-img img:hover{-ms-transform: scale(1.1); -webkit-transform: scale(1.1); transform: scale(1.1); }
+.article-content{padding: 20px;}
+.article-content h5{font-size: 25px; font-weight: 600;}
+.article-content .btn-link{background: transparent; border: none; outline: none; box-shadow: none; text-align: left; padding-left: 0; color:#d72727;}
+.article-content .btn-link:hover{background-color: transparent;}
+.article-blog .small-title{font-size: 18px; color: #d72727; font-weight: 600;}
+.article-blog .page-title{font-size: 62px; font-weight: 600;}
+.blog-detail{padding: 80px 0; text-align: center;}
+.blog-detail .title h2{font-size: 62px; font-weight: 600; margin-bottom: 40px; text-align: center; text-transform: capitalize; letter-spacing: 0.9px;}
+.blog-detail .sub-title{font-size: 18px; font-weight: bold; text-align: center; text-transform: uppercase; color: #d72727;}
+.blog-detail .img-box{padding: 0 40px; margin-bottom: 40px;}
+.blog-detail .img-box img{max-width: 100%; object-fit: cover; border-radius: 24px; background-color: #fff;}
+.blog-detail .blog-cotent{padding: 120px 85px; background: #fff; box-shadow: 0px 1px 22px 0px rgba(0, 0, 0, 0.15); border-radius: 24px; margin-top: -120px;}
+.blog-detail .blog-cotent p{color: #666666; margin-bottom: 25px; font-size: 18px; text-align: left;}
+.blog-detail .blog-cotent a{color: #302e2e; font-weight: 600;}
+.blog-detail .blog-cotent a:hover{color: #d72727;}
+.blog-detail .blog-cotent h2{font-size: 32px; color: #302e2e; font-weight: bold; text-align: left;}
+.blog-detail .blog-cotent h3{font-size: 24px; color: #302e2e; font-weight: bold; letter-spacing: 0.9px;}
+.blog-detail .blog-cotent ul li p{margin: 0;}
+.blog-detail .blog-cotent ul {padding-left: 15px;}
+.blog-detail .blog-cotent ul li{position: relative; padding-left: 15px; margin-bottom: 15px;}
+.blog-detail .blog-cotent blockquote{background-color: #fff; position: relative; padding: 20px 40px; margin-bottom: 40px; margin-top: 40px; box-shadow: 0 5px 20px 0 rgba(210,210,245,.5); border-radius: 0 24px 0 24px;}
+.blog-detail .blog-cotent blockquote p{font-size: 20px; color: #9b9797; font-style: italic;}
+.blog-detail .blog-cotent blockquote::after{content: ''; background-color: #d72727; height: 7px; width: 50px; position: absolute; right: 0px; bottom: 0px;}
+.blog-detail .blog-cotent blockquote::before{content: ''; background-color: #d72727; position: absolute; height: 7px; width: 50px; left: 0px; top: 0px;}
+.blog-detail .blog-cotent img{max-width: 100%; border-radius: 24px;}

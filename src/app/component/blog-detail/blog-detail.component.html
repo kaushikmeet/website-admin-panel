@@ -1,0 +1,16 @@
+<app-header></app-header>
+<section class="blog-detail">
+  <div class="container">
+    <div *ngIf="blog">
+      <p class="sub-title">Blog</p>
+      <div class="title"><h2>{{ blog.title }}</h2></div>
+      <div class="img-box"><img [src]="image_get_url + blog.image_url" /></div>
+      <div class="blog-cotent"><p [innerHTML]="blog.description">{{ blog.description }}</p></div>
+    </div>
+  </div>
+</section>
+
+<div *ngIf="!blog">
+  <p>Blog not found.</p>
+</div>
+<app-footer></app-footer>

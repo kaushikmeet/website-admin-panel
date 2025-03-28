@@ -18,9 +18,13 @@ export class BlogService {
   constructor(private http: HttpClient) { }
 
   getBlogs(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>('http://localhost:3000/api/all-blogs');
   }
 
+  getBlogById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+  
   createBlog(blogData: FormData): Observable<any> {
     return this.http.post<any>(this.apiUrl, blogData);
   }
@@ -34,5 +38,9 @@ export class BlogService {
 
   deleteBlog(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+
+  getBlogBySlug(slug: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/?slug=${slug}`, this.httpOptions);
   }
 }
