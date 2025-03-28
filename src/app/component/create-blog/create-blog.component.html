@@ -5,7 +5,7 @@
         <div class="mButton"><button (click)="addBlogPopup()" data-bs-toggle="modal" data-bs-target="#createBlog"><span>+</span> Create blog</button></div>
     </div>
     <div class="serach-box">
-        <input type="search" class="form-control" placeholder="Search...."/>
+        <input type="search" class="form-control" [(ngModel)]="searchTerm" placeholder="Search...."/>
         <span><i class="fa-solid fa-magnifying-glass"></i></span>
     </div>
     <div class="table-data" *ngIf="blog_data.length > 0">
@@ -13,14 +13,14 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Title</th>
                 <th scope="col">Image</th>
+                <th scope="col">Title</th>
                 <th scope="col">Slug</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
             <tbody>
-                <tr *ngFor="let blog of blog_data; let i=index;">
+                <tr *ngFor="let blog of blog_data | search:searchTerm:'title'; let i=index;">
                     <td scope="row">{{i+1}}</td>
                     <td><img [src]="image_get_url + blog.image_url" alt="{{blog.title}}" width="25" height="25" *ngIf="blog.image_url"/></td>
                     <td><p>{{blog.title}}</p></td>

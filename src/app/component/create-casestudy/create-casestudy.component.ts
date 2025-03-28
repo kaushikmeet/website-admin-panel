@@ -6,10 +6,11 @@ import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import { CasestudyService } from '../../services/casestudy.service';
 import { ToastrService } from 'ngx-toastr';
+import { SearchPipe } from '../../pipes/search.pipe';
 
 @Component({
   selector: 'app-create-casestudy',
-  imports: [AsideComponent, ReactiveFormsModule, NgxEditorModule, CommonModule, FormsModule],
+  imports: [AsideComponent, ReactiveFormsModule, NgxEditorModule, CommonModule, FormsModule, SearchPipe],
   templateUrl: './create-casestudy.component.html',
   styleUrl: './create-casestudy.component.scss'
 })
@@ -24,7 +25,7 @@ export class CreateCasestudyComponent implements OnInit, OnDestroy{
   add_case_study!: boolean;
   edit_case_study!: boolean;
   editorContent: string = ''; 
-
+  searchTerm: string = ''; 
   image_get_url = environment.apiUrl;
   editor!: Editor;
   toolbar: Toolbar = [

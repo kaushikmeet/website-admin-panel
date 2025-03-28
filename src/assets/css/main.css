@@ -25,8 +25,8 @@
 .it-company-hero-area{padding: 75px 60px;}
 .it-company-hero-area h3{font-weight: 700; font-size: 33px; letter-spacing: 0.5px;}
 .it-company-hero-area h1{font-weight: 700; font-size: 62px; letter-spacing: 0.5px;}
-.btn{background-color: var(--primary-button-color); border: none; box-shadow:0px 1px 24px 8px rgba(0, 0, 0, 0.1); padding: 14px 32px;}
-.btn:hover{background-color: #424952;}
+.custom-btn{background-color: var(--primary-button-color); border: none; box-shadow:0px 1px 24px 8px rgba(0, 0, 0, 0.1); padding: 14px 32px;}
+.custom-btn:hover{background-color: #424952;}
 .navbar-light .main-menu li a.nav-link, .navbar-light .action-btns a.btn-link, .navbar-dark.sticky-header.affix .main-menu li a.nav-link, .navbar-dark.sticky-header.affix .action-btns a.btn-link{color:#737373; font-weight: 600;}
 .it-company-about-area .it-company-title{margin-bottom: 40px; font-size: 43px; font-weight: 600;}
 .it-company-bg{background-color: var(--white-background); box-shadow: 0px 1px 24px 8px rgba(0, 0, 0, 0.1); border-radius: 24px;}
