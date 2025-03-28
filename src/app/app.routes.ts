@@ -20,11 +20,13 @@ import { CaseStudyComponent } from './component/case-study/case-study.component'
 import { NewsComponent } from './component/news/news.component';
 import { CompanyComponent } from './component/company/company.component';
 import { ProjectComponent } from './component/project/project.component';
+import { BlogDetailComponent } from './component/blog-detail/blog-detail.component';
 
 export const routes: Routes = [
    {path:'home', component: HomeComponent},
    {path:'', redirectTo:'/home', pathMatch:'full'},
    {path:'blog', component: BlogComponent},
+   {path:'blogs', component: BlogDetailComponent},
    {path:'case-study', component:CaseStudyComponent},
    {path:'news', component:NewsComponent},
    {path:'company', component: CompanyComponent},
@@ -43,5 +45,5 @@ export const routes: Routes = [
    {path:'profile', component:ProfileComponent},
    {path:'setting', component:SettingComponent},
    {path:'register', component: RegisterComponent},
-   {path:'***', component:NotfoundComponent},
+   {path:'**', component:NotfoundComponent},
 ];

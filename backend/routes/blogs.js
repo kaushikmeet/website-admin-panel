@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Get all blogs
-router.get('/blogs', (req, res) => {
+router.get('/all-blogs', (req, res) => {
   const query = `SELECT id, title, description, image_url, slug FROM blogs`;
   db.query(query, (err, results) => {
     if (err) {
@@ -53,6 +53,30 @@ router.get('/blogs/:id', (req, res) => {
     res.status(200).json(results[0]); 
   });
 });
+
+
+// blogs.js (Express route)
+router.get('/blogs', (req, res) => {
+  const blogSlug = req.query.slug;
+
+  if (!blogSlug) {
+    return res.status(400).json({ error: 'Slug is required' });
+  }
+  const query = 'SELECT * FROM blogs WHERE slug = ?';
+  db.query(query, [blogSlug], (err, results) => {
+    if (err) {
+      console.error('Error fetching blog by slug:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'Blog post not found' });
+    }
+
+    res.status(200).json(results[0]);  // Return the blog post
+  });
+});
+
 
 // Create a new blog
 router.post('/blogs', upload.single('image'), (req, res) => {

@@ -1,17 +1,23 @@
 <app-header></app-header>
-<section class="c">
+<section class="article-blog">
    <div class="container"> 
-   <div class="row ptb-80">
+   <div class="row pt-5 pb-4">
        <div class="col-md-12">
-        <p class="text-center">Blogs</p>
-        <h1 class="text-center">Explore All Blog</h1>
+        <p class="text-center small-title">Blogs</p>
+        <h1 class="text-center page-title">Explore All Blog</h1>
        </div>
    </div>
-   <div class="row" *ngFor="let blog of blogs">
-      <div class="col-lg-4 col-md-12">
-        <div class="single-article">
-            <a></a>
-        </div>
+   <div class="row">
+      <div class="col-lg-4 col-md-12" *ngFor="let blog of blogs">
+        <div class="card single-article my-3">
+            <div type="button" (click)="goToBlogDetail(blog.slug)" class="article-img">
+                <img [src]="image_get_url + blog.image_url" class="card-img-top" alt="..." class="img-fluid">
+            </div>
+            <div class="card-body article-content">
+              <h5 class="card-title">{{blog.title}}</h5>
+              <a type="button" class="btn btn-link" (click)="goToBlogDetail(blog.slug)">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
       </div>
    </div>
 </div>
